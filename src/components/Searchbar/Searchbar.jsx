@@ -9,13 +9,13 @@ import {
   SearchFormInput,
 } from './Searchbar.styled';
 
-export const Searchbar = ({ formData }) => {
+export const Searchbar = ({ data }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = evt => {
     evt.preventDefault();
     const query = evt.target.searchQuery.value;
-    formData(query);
+    data(query);
 
     setInput('');
   };
@@ -44,5 +44,5 @@ export const Searchbar = ({ formData }) => {
 };
 
 SearchBar.propTypes = {
-  formData: PropTypes.func,
+  data: PropTypes.func.isRequired,
 };

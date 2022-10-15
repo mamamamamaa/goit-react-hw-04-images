@@ -27,14 +27,6 @@ export const App = () => {
   const [query, setQuery] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const formData = searchQuery => {
-    if (searchQuery !== query) {
-      setData([]);
-      setPage(1);
-      setQuery(searchQuery);
-    }
-  };
-
   useEffect(() => {
     async function getResponse() {
       setIsLoaded(true);
@@ -45,13 +37,21 @@ export const App = () => {
     getResponse();
   }, [page, query]);
 
+  const formData = searchQuery => {
+    if (searchQuery !== query) {
+      setData([]);
+      setPage(1);
+      setQuery(searchQuery);
+    }
+  };
+
   const loadMore = () => setPage(prevPage => prevPage + 1);
   const setLargeImg = img => setLargeImage(img);
   const onModalClose = () => setLargeImage('');
 
   return (
     <section>
-      <Searchbar formData={formData} />
+      <Searchbar data={formData} />
 
       {/* case with button "load more"  */}
 
